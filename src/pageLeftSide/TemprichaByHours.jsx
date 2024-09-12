@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
+import PropTypes from "prop-types";
 
 export default function TemprichaByHours({ hourlyData }) {
   const swiperRef = useRef(null);
@@ -13,7 +14,7 @@ export default function TemprichaByHours({ hourlyData }) {
   };
 
   useEffect(() => {
-    const swiperInstance = swiperRef.current.swiper;
+    const swiperInstance = swiperRef.current?.swiper;
     if (swiperInstance) {
       swiperInstance.on("reachEnd", handleReachEnd);
     }
@@ -43,10 +44,10 @@ export default function TemprichaByHours({ hourlyData }) {
         breakpoints={{
           640: { slidesPerView: 3 },
           768: { slidesPerView: 5 },
-          1024: { slidesPerView: 8 },
+          1024: { slidesPerView: 7 },
         }}
         slideToClickedSlide
-        loop={false}
+        loop={true}
         className="swiper-container"
         style={{ overflow: "hidden" }}
       >
@@ -56,8 +57,8 @@ export default function TemprichaByHours({ hourlyData }) {
             className="p-4 flex gap-[10px] flex-col items-center"
           >
             <p className="text-[18px] text-[#D7D7D7] font-[400]">{hour.time}</p>
-            <img className="w-[35px]  h-[35px]" src={hour.icon} alt="" />
-            <p className="text-[24px]  text-[#D7D7D7] font-[400]">
+            <img className="w-[35px] h-[35px]" src={hour.icon} alt="" />
+            <p className="text-[24px] text-[#D7D7D7] font-[400]">
               {hour.temp}°C
             </p>
           </SwiperSlide>
@@ -66,3 +67,13 @@ export default function TemprichaByHours({ hourlyData }) {
     </div>
   );
 }
+
+TemprichaByHours.propTypes = {
+  hourlyData: PropTypes.arrayOf(
+    PropTypes.shape({
+      time: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      temp: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};

@@ -23,8 +23,6 @@ export const hourlyData = [
   { time: "21:00", temp: 26, icon: "/weatherIcons/filled sun.svg" },
   { time: "22:00", temp: 25, icon: "/weatherIcons/filled sun.svg" },
   { time: "23:00", temp: 24, icon: "/weatherIcons/filled sun.svg" },
-
-  // Next day
   { time: "00:00", temp: 23, icon: "/weatherIcons/filled sun.svg" },
   { time: "01:00", temp: 22, icon: "/weatherIcons/filled sun.svg" },
   { time: "02:00", temp: 22, icon: "/weatherIcons/filled sun.svg" },

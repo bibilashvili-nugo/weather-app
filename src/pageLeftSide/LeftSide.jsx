@@ -4,6 +4,7 @@ import Humidity from "./Humidity";
 import Sensitivity from "./Sensitivity";
 import TemprichaByHours from "./TemprichaByHours";
 import { hourlyData } from "./hourlyData";
+import CurrentLocation from "./CurentLocation";
 
 export default function LeftSide() {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ export default function LeftSide() {
         <Humidity />
         <Sensitivity />
       </div>
+      <CurrentLocation />
     </div>
   );
 }

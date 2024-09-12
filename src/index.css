@@ -15,38 +15,65 @@
 
 .hour-slide p {
   margin: 0;
-  font-size: 18px; /* Customize this to match your desired font size */
+  font-size: 18px;
 }
-
+.swiper-container {
+  position: relative;
+  z-index: -10;
+}
 .swiper-pagination {
   display: none;
 }
-/* Custom styling for Swiper navigation arrows */
+
 .swiper-button-next,
 .swiper-button-prev {
   width: 43.083px;
   height: 43.083px;
-  background-color: #2c2c2ecc; /* Circle background color */
-  border-radius: 50%; /* Make it circular */
+  background-color: #2c2c2ecc;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  z-index: 10; /* Ensure it is above other content */
+  z-index: 10;
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  font-size: 20px; /* Adjust font size for the arrows */
-  color: #fff; /* Arrow color */
+  font-size: 20px;
+  color: #fff;
 }
 .swiper-slide {
   margin: 0 !important;
 }
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 43px;
+  height: 43px;
+  background-color: #2c2c2ecc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
 .swiper-button-next {
-  right: 10px; /* Adjust position as needed */
+  right: 10px;
 }
 
 .swiper-button-prev {
-  left: 10px; /* Adjust position as needed */
+  left: 10px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+  color: #fff;
 }
