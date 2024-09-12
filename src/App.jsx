@@ -1,4 +1,4 @@
-import Language_selector from "./language_selector/Language_selector";
+// import Language_selector from "./language_selector/Language_selector";
 // import { useTranslation } from "react-i18next";
 import "./i18n";
 import LeftSide from "./pageLeftSide/LeftSide";
@@ -14,7 +14,7 @@ const App = () => {
         backgroundPosition: "center",
       }}
     >
-      <Language_selector />
+      {/* <Language_selector /> */}
       <LeftSide />
     </div>
   );
