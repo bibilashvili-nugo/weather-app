@@ -1,13 +1,16 @@
-import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
+// src/layout/Layout.jsx
+
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from '../components/Header';
 
 const Layout = () => {
   return (
     <div
       style={{
         backgroundImage: `url("/weatherBackGrounds/d8e9712b61aba22c5ca6dac8c7336dcb.jpeg")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
       className="flex flex-col min-h-screen"
     >
