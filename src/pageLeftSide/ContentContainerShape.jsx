@@ -14,7 +14,7 @@ function ContentContainerShape({ data, size, layout }) {
 
   return (
     <div
-      className="bg-[#B5B5B566] rounded-[8px] text-[#af2525]"
+      className="bg-[#00000066] rounded-[8px] text-[#af2525]"
       style={containerStyle}
     >
       {data && (

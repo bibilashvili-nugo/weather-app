@@ -6,15 +6,11 @@ import translationKA from "./language_selector/ka/translation.json";
 
 i18n.use(initReactI18next).init({
   resources: {
-    EN: {
-      translation: translationEN,
-    },
-    KA: {
-      translation: translationKA,
-    },
+    EN: { translation: translationEN },
+    KA: { translation: translationKA },
   },
   lng: "KA",
-
+  fallbackLng: "KA",
   interpolation: {
     escapeValue: false,
   },

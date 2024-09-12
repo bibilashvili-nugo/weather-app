@@ -1,6 +1,6 @@
 export default function CurrentDay() {
   return (
-    <div className="bg-[#B5B5B566] text-[#FFFFFF] px-[52px] py-[35px] rounded-[8px] ">
+    <div className="bg-[#00000066] text-[#FFFFFF] px-[52px] py-[35px] rounded-[8px] ">
       <div>
         <div className="flex justify-between">
           <span className="text-[40px] font-[510]">ბათუმი</span>

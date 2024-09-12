@@ -29,10 +29,10 @@ export default function TemprichaByHours({ hourlyData }) {
     <div
       style={{
         backdropFilter: "blur(1.7210965156555176px)",
-        background: "rgba(181, 181, 181, 0.40)",
+        // background: "rgba(181, 181, 181, 0.40)",
         overflow: "hidden",
       }}
-      className="container mb-[53px] py-[28px] rounded-[14px] mx-auto p-4"
+      className="container bg-[#00000066] mb-[53px] py-[28px] rounded-[14px] mx-auto p-4"
     >
       <Swiper
         ref={swiperRef}

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function LanguageSelector() {
   const { i18n } = useTranslation();
@@ -9,24 +9,29 @@ export default function LanguageSelector() {
     {
       code: "EN",
       lang: "EN",
-      icon: "public/Screenshot 2024-09-12 at 1.01.54 PM.png",
+      icon: "/Screenshot 2024-09-12 at 1.01.54 PM.png",
     },
     {
       code: "KA",
       lang: "KA",
-      icon: "public/Screenshot 2024-09-12 at 1.03.27 PM.png",
+      icon: "/Screenshot 2024-09-12 at 1.03.27 PM.png",
     },
   ];
 
   useEffect(() => {
+    console.log("i18n instance:", i18n);
     const storedLang = localStorage.getItem("language") || "KA";
     setSelectedLang(storedLang);
-    i18n.changeLanguage(storedLang);
+    i18n
+      .changeLanguage(storedLang)
+      .catch((err) => console.error("Error changing language:", err));
   }, [i18n]);
 
   const toggleLanguage = () => {
     const newLang = selectedLang === "KA" ? "EN" : "KA";
-    i18n.changeLanguage(newLang);
+    i18n
+      .changeLanguage(newLang)
+      .catch((err) => console.error("Error changing language:", err));
     setSelectedLang(newLang);
     localStorage.setItem("language", newLang);
   };
