@@ -23,22 +23,6 @@ function ContentContainerShape({ data, size, layout }) {
             layout === "col" ? "flex-col" : "flex-row"
           }`}
         >
-          <div className="flex gap-[1rem] flex-col">
-            <h2
-              className="text-[#FFFFFF] text-center"
-              style={getTextStyle(data.label)}
-            >
-              {data.label?.label}
-            </h2>
-            {data.currentDay && (
-              <span
-                className="text-[#FFFFFF] text-center"
-                style={getTextStyle(data.currentDay)}
-              >
-                {data.currentDay.currentDay}
-              </span>
-            )}
-          </div>
           <div className="flex flex-col gap-[1rem]">
             {data.humidity && (
               <h2
@@ -78,11 +62,7 @@ ContentContainerShape.propTypes = {
       text: PropTypes.string,
       font: PropTypes.string,
     }).isRequired,
-    currentDay: PropTypes.shape({
-      currentDay: PropTypes.string,
-      text: PropTypes.string,
-      font: PropTypes.string,
-    }),
+
     humidity: PropTypes.shape({
       humidity: PropTypes.string,
       text: PropTypes.string,
