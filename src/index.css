@@ -77,3 +77,52 @@
   font-size: 20px;
   color: #fff;
 }
+
+
+
+
+
+.react-calendar {
+  border: none;
+}
+
+.react-calendar__tile {
+  border-radius: 0.5rem; 
+}
+
+.react-calendar__tile--active {
+  background-color: black !important; 
+  color: white !important; 
+  border-radius: 50%; 
+}
+
+.react-calendar__tile:hover {
+  background-color: #333; 
+  color: white; 
+}
+
+.react-calendar__month-view__days__day {
+  color: #000;
+}
+
+.react-calendar__navigation button {
+  color: #000; 
+}
+
+.react-calendar__navigation button:hover {
+  color: #ff9800; 
+}
+
+.react-calendar__month-view__weekdays {
+  display: none; /* Hide the weekdays header */
+}
+
+/* Hide dots or indicators under the days in the calendar */
+.react-calendar__month-view__days__day--hasTile {
+  position: relative;
+}
+
+/* Optional: Adjust the day number font size or spacing if needed */
+.react-calendar__month-view__days__day {
+  font-size: 1rem;
+}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import 'react-calendar/dist/Calendar.css'; 
+
 
 const API_KEY = 'qfqb4mH8tbAcAUEgSNeNvVk6g4z1Rj0G';
 const API_URL = `https://api.tomorrow.io/v4/weather/forecast?location=batumi&apikey=${API_KEY}&timesteps=daily&startTime=${new Date().toISOString().split('T')[0]}&endTime=${new Date(new Date().setDate(new Date().getDate() + 13)).toISOString().split('T')[0]}`;
@@ -11,6 +12,9 @@ const formatDate = (dateString) => {
   const date = new Date(dateString);
   return new Intl.DateTimeFormat('ka-GE', options).format(date);
 };
+36
+
+
 
 const RightSide = () => {
   const [forecast, setForecast] = useState([]);
@@ -95,13 +99,12 @@ const RightSide = () => {
           <Calendar
             onChange={setSelectedDate}
             value={selectedDate}
-            className="react-calendar border-none"
+            className="react-calendar" // Ensure the class is applied
           />
           <button
             className="float-right mt-4 px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             onClick={handleSaveClick}
-          >\
-
+          >
             Save
           </button>
         </div>
@@ -120,7 +123,7 @@ const RightSide = () => {
             </div>
             <div className="mb-2">
               <img
-                src={`/weatherIcons/filled sun.svg`} // Use dynamic icons based on day.values.weatherCondition if available
+                src={`/weatherIcons/filled sun.svg`} 
                 alt="Weather Icon"
                 className="w-12 h-12 mx-auto"
               />
