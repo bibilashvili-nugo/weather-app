@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const API_KEY = 'qfqb4mH8tbAcAUEgSNeNvVk6g4z1Rj0G';
-
-const API_URL = `https://api.tomorrow.io/v4/weather/forecast?location=batumi&apikey=${API_KEY}`;
+const API_URL = `https://api.tomorrow.io/v4/weather/forecast?location=batumi&apikey=${API_KEY}&timesteps=daily&startTime=${new Date().toISOString().split('T')[0]}&endTime=${new Date(new Date().setDate(new Date().getDate() + 13)).toISOString().split('T')[0]}`;
 
 const formatDate = (dateString) => {
   const options = { weekday: 'long', day: 'numeric', month: 'long' };
   const date = new Date(dateString);
-  
- 
   return new Intl.DateTimeFormat('ka-GE', options).format(date);
 };
 
@@ -17,6 +16,9 @@ const RightSide = () => {
   const [forecast, setForecast] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isCalendarVisible, setCalendarVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const calendarRef = useRef(null);
 
   useEffect(() => {
     const fetchForecastData = async () => {
@@ -25,7 +27,7 @@ const RightSide = () => {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
-          }
+          },
         });
 
         if (!response.ok) {
@@ -47,6 +49,22 @@ const RightSide = () => {
     fetchForecastData();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setCalendarVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSaveClick = () => {
+    alert(`Selected date: ${selectedDate.toDateString()}`);
+    setCalendarVisible(false);
+  };
+
   if (loading) {
     return <div className="text-center text-lg text-gray-600">Loading forecast data...</div>;
   }
@@ -60,32 +78,65 @@ const RightSide = () => {
   }
 
   return (
-    <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-      <h1 className="text-2xl font-semibold text-gray-800 mb-4">Weather Forecast for Batumi</h1>
-      {forecast.map((day, index) => (
-        <div key={index} className="mb-4 p-4 bg-white rounded-lg shadow-sm border border-gray-200 text-center">
-          <div className="mb-2">
-            <h2 className="text-xl font-medium text-gray-700">{formatDate(day.time).split(', ')[1]}</h2>
-            <p className="text-gray-600">{formatDate(day.time).split(', ')[0]}</p>
-          </div>
-          <div className="mb-2">
-            <img
-              src={`/weatherIcons/filled sun.svg`} 
-              alt="Weather Icon"
-              className="w-12 h-12 mx-auto"
-            />
-          </div>
-          <div className="flex justify-center gap-2">
-            <p className="text-gray-600">
-              <span className="font-semibold">{Math.round(day.values?.temperatureMax) ?? 'N/A'}°C</span>
-            </p>
-            <span className="text-gray-600">|</span>
-            <p className="text-gray-600">
-              <span className="font-semibold">{Math.round(day.values?.temperatureMin) ?? 'N/A'}°C</span>
-            </p>
-          </div>
+    <div className="p-4 relative">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl font-semibold text-[#000000]">Weather Forecast</h1>
+        <AiOutlineCalendar
+          className="w-6 h-6 text-gray-600 cursor-pointer"
+          onClick={() => setCalendarVisible(!isCalendarVisible)}
+        />
+      </div>
+
+      {isCalendarVisible && (
+        <div
+          ref={calendarRef}
+          className="absolute top-4 right-4 p-4 bg-white shadow-lg rounded-lg z-10"
+        >
+          <Calendar
+            onChange={setSelectedDate}
+            value={selectedDate}
+            className="react-calendar border-none"
+          />
+          <button
+            className="float-right mt-4 px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+            onClick={handleSaveClick}
+          >\
+
+            Save
+          </button>
         </div>
-      ))}
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        {forecast.map((day, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-between p-4 bg-[#00000066] text-white rounded-lg"
+            style={{ width: '152px', height: '184px', borderRadius: '12px', opacity: '0.9' }}
+          >
+            <div className="mb-2 text-center">
+              <h2 className="text-xl font-medium">{formatDate(day.time).split(', ')[1]}</h2>
+              <p>{formatDate(day.time).split(', ')[0]}</p>
+            </div>
+            <div className="mb-2">
+              <img
+                src={`/weatherIcons/filled sun.svg`} // Use dynamic icons based on day.values.weatherCondition if available
+                alt="Weather Icon"
+                className="w-12 h-12 mx-auto"
+              />
+            </div>
+            <div className="flex justify-center gap-2">
+              <p className="text-sm">
+                <span className="font-semibold">{Math.round(day.values?.temperatureMax) ?? 'N/A'}°C</span>
+              </p>
+              <span className="text-sm">|</span>
+              <p className="text-sm">
+                <span className="font-semibold">{Math.round(day.values?.temperatureMin) ?? 'N/A'}°C</span>
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
