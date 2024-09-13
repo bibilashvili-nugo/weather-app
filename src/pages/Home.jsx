@@ -7,7 +7,7 @@ const Home = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   return (
-    <div className="flex p-4 gap-4 ">
+    <div className="flex w-full p-4 gap-4 ">
       <LeftSide />
       <RightSide />
     </div>

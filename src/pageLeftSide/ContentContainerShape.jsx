@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 
-function ContentContainerShape({ data, size, layout }) {
+function ContentContainerShape({ data }) {
   const containerStyle = {
-    paddingInline: data.paddingX,
-    paddingBlock: data.paddingY,
-    width: size,
+    paddingInline: data.paddingX || "1rem",
+    paddingBlock: data.paddingY || "1rem",
   };
 
   const getTextStyle = (field) => ({
@@ -14,41 +13,56 @@ function ContentContainerShape({ data, size, layout }) {
 
   return (
     <div
-      className="bg-[#00000066] rounded-[8px] text-[#af2525]"
+      className="bg-[#00000066] rounded-[8px] text-[#af2525] w-full "
       style={containerStyle}
     >
       {data && (
-        <div
-          className={`flex w-full justify-between gap-[1rem] ${
-            layout === "col" ? "flex-col" : "flex-row"
-          }`}
-        >
-          <div className="flex flex-col gap-[1rem]">
-            {data.humidity && (
-              <h2
-                className="text-[#FFFFFF] text-center"
+        <div className="flex flex-col gap-[1rem] items-center justify-between">
+          {/* Render the label if it exists */}
+          {data.label && (
+            <h2
+              className="text-[#FFFFFF] text-center text-[18px] sm:text-[20px] lg:text-[24px]"
+              style={getTextStyle(data.label)}
+            >
+              {data.label.label}
+            </h2>
+          )}
+
+          {/* Render humidity if it exists */}
+          {data.humidity && (
+            <div className="text-center">
+              <h3
+                className="text-[#FFFFFF] text-[16px] sm:text-[18px] lg:text-[22px]"
                 style={getTextStyle(data.humidity)}
               >
                 {data.humidity.humidity}
-              </h2>
-            )}
-            {data.tempricha && (
-              <span
-                className="text-[#FFFFFF] text-center"
+              </h3>
+            </div>
+          )}
+
+          {/* Render tempricha if it exists */}
+          {data.tempricha && (
+            <div className="text-center">
+              <h3
+                className="text-[#FFFFFF] text-[16px] sm:text-[18px] lg:text-[22px]"
                 style={getTextStyle(data.tempricha)}
               >
                 {data.tempricha.tempricha}
-              </span>
-            )}
-            {data.percentage && (
-              <span
-                className="text-[#FFFFFF] text-center"
+              </h3>
+            </div>
+          )}
+
+          {/* Render percentage if it exists */}
+          {data.percentage && (
+            <div className="text-center">
+              <h3
+                className="text-[#FFFFFF] text-[16px] sm:text-[18px] lg:text-[22px]"
                 style={getTextStyle(data.percentage)}
               >
                 {data.percentage.percentage}
-              </span>
-            )}
-          </div>
+              </h3>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -62,7 +76,6 @@ ContentContainerShape.propTypes = {
       text: PropTypes.string,
       font: PropTypes.string,
     }).isRequired,
-
     humidity: PropTypes.shape({
       humidity: PropTypes.string,
       text: PropTypes.string,
@@ -81,13 +94,11 @@ ContentContainerShape.propTypes = {
     paddingX: PropTypes.string,
     paddingY: PropTypes.string,
   }).isRequired,
-  size: PropTypes.string,
   layout: PropTypes.oneOf(["row", "col"]),
 };
 
 ContentContainerShape.defaultProps = {
   layout: "row",
-  size: "100%", // Default width
 };
 
 export default ContentContainerShape;

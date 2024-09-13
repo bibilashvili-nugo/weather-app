@@ -4,7 +4,7 @@ import LanguageSelector from "../language_selector/Language_selector";
 const Header = () => {
   return (
     <header className="flex justify-between items-center p-7">
-      <div className="flex-1 pr-7 relative">
+      <div className=" pr-7 relative">
         <div className="relative flex justify-between items-center">
           <MdSearch className="absolute left-4 text-black text-xl" />
           <input

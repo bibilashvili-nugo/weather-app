@@ -9,8 +9,8 @@ export default function Sensitivity() {
   };
 
   return (
-    <div>
-      <ContentContainerShape data={sensitivityData} layout="col" size="362px" />
+    <div className="w-full  p-2">
+      <ContentContainerShape data={sensitivityData} />
     </div>
   );
 }

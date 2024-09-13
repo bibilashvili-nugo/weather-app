@@ -29,23 +29,31 @@ export default function TemprichaByHours({ hourlyData }) {
     <div
       style={{
         backdropFilter: "blur(1.7210965156555176px)",
-        // background: "rgba(181, 181, 181, 0.40)",
+
         overflow: "hidden",
       }}
-      className="container bg-[#00000066] mb-[53px] py-[28px] rounded-[14px] mx-auto p-4"
+      className="container w-[500px] md:w-[600px] xl:w-[755px] bg-[#00000066] mb-[53px] py-[28px] rounded-[14px]  p-4"
     >
       <Swiper
         ref={swiperRef}
         modules={[Navigation, Pagination]}
-        slidesPerView={8}
+        slidesPerView={3}
+        breakpoints={{
+          640: {
+            slidesPerView: 3,
+          },
+
+          768: {
+            slidesPerView: 4,
+          },
+
+          1280: {
+            slidesPerView: 7,
+          },
+        }}
         spaceBetween={10}
         navigation
         pagination={{ clickable: true }}
-        breakpoints={{
-          640: { slidesPerView: 3 },
-          768: { slidesPerView: 5 },
-          1024: { slidesPerView: 7 },
-        }}
         slideToClickedSlide
         loop={true}
         className="swiper-container"
@@ -56,9 +64,11 @@ export default function TemprichaByHours({ hourlyData }) {
             key={index}
             className="p-4 flex gap-[10px] flex-col items-center"
           >
-            <p className="text-[18px] text-[#D7D7D7] font-[400]">{hour.time}</p>
+            <p className="md:text-[18px] text-[16px]  text-[#D7D7D7] font-[400]">
+              {hour.time}
+            </p>
             <img className="w-[35px] h-[35px]" src={hour.icon} alt="" />
-            <p className="text-[24px] text-[#D7D7D7] font-[400]">
+            <p className="md:text-[24px] text-[20px] text-[#D7D7D7] font-[400]">
               {hour.temp}°C
             </p>
           </SwiperSlide>
