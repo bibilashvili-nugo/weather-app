@@ -18,7 +18,6 @@ function ContentContainerShape({ data }) {
     >
       {data && (
         <div className="flex flex-col gap-[1rem] items-center justify-between">
-          {/* Label */}
           {data.label && (
             <h2
               className="text-[#FFFFFF] text-center"
@@ -28,7 +27,6 @@ function ContentContainerShape({ data }) {
             </h2>
           )}
 
-          {/* Humidity */}
           {data.humidity && (
             <div className="text-center">
               <h3
@@ -40,7 +38,6 @@ function ContentContainerShape({ data }) {
             </div>
           )}
 
-          {/* Temperature (Sensitivity) */}
           {data.temperature && (
             <div className="text-center">
               <h3
@@ -52,7 +49,6 @@ function ContentContainerShape({ data }) {
             </div>
           )}
 
-          {/* Percentage (if available) */}
           {data.percentage && (
             <div className="text-center">
               <h3

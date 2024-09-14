@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
-
+import Visibility from "./Visibility";
 import CurrentDay from "./CurrentDay";
 import Humidity from "./Humidity";
 import Sensitivity from "./Sensitivity";
 import TemprichaByHours from "./TemprichaByHours";
+import SeaLevel from "./SeaLevel";
 import { hourlyData } from "./hourlyData";
 import { useCurrentLocation } from "./customHooks/GetCurrentLocation";
 
@@ -43,12 +44,16 @@ export default function LeftSide() {
         {t("weather by hours")}
       </h3>
       <TemprichaByHours hourlyData={hourlyData} />
-      <div className="flex flex-col lg:flex-row w-full justify-between gap-4">
-        <div className="w-full lg:w-[48%] shrink-0">
+      <div className="w-full justify-between gap-4">
+        <div className="flex">
           <Humidity />
-        </div>
-        <div className="w-full lg:w-[48%] shrink-0">
+
           <Sensitivity />
+        </div>
+
+        <div className="flex">
+          <Visibility />
+          <SeaLevel />
         </div>
       </div>
     </div>
