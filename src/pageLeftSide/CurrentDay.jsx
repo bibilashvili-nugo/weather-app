@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useCurrentLocation } from "./customHooks/GetCurrentLocation";
 import useWeather from "./customHooks/useWeather";
 
 const CurrentDay = () => {
@@ -7,7 +9,18 @@ const CurrentDay = () => {
     month: "long",
   });
 
-  const { weather, kelvinToCelsius, city, isLoading, error } = useWeather();
+  const {
+    weather,
+    kelvinToCelsius,
+    city: weatherCity,
+    isLoading,
+    error,
+  } = useWeather();
+  const { address, fetchLocationDetails } = useCurrentLocation();
+
+  useEffect(() => {
+    fetchLocationDetails();
+  }, [fetchLocationDetails]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -17,7 +30,7 @@ const CurrentDay = () => {
       <div>
         <div className="flex justify-between">
           <span className="md:text-[40px] text-[35px] font-[510]">
-            {city || "Location not available"}
+            {address || weatherCity || "Location not available"}
           </span>
           <span className="md:text-[24px] text-[20px] font-[400] capitalize">
             {weather ? weather.weather[0].description : "Weather not available"}
