@@ -9,6 +9,7 @@ import getFormattedWeatherData from "./services/WeatherService";
 
 const App = () => {
   const [weather, setWeather] = useState({});
+
   useEffect(() => {
     const getWeather = async () => {
       try {

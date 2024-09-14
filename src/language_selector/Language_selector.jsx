@@ -41,7 +41,7 @@ export default function LanguageSelector() {
   return (
     <div className="flex items-center">
       <motion.div
-        className="relative cursor-pointer w-[55px] h-[30px]"
+        className="relative cursor-pointer  w-[49px] h-[30px]"
         key={selectedLang}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -51,7 +51,7 @@ export default function LanguageSelector() {
         <img
           src={currentLang?.icon}
           alt={`${currentLang?.lang} flag`}
-          className="w-full h-full object-cover rounded-[2px]"
+          className="w-full h-full rounded-3xl border border-[black] object-cover "
         />
       </motion.div>
     </div>
