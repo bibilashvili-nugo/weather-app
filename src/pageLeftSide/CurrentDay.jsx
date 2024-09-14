@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useCurrentLocation } from "./customHooks/GetCurrentLocation";
-import useWeather from "./customHooks/useWeather";
+import { useCurrentLocation } from "../services/CurrentCity";
+import useWeather from "../customHooks/useWeather";
 
 const CurrentDay = () => {
   const formattedDate = new Date().toLocaleDateString("ka-GE", {

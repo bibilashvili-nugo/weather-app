@@ -1,4 +1,4 @@
-import useWeather from "./customHooks/useWeather";
+import useWeather from "../customHooks/useWeather";
 import ContentContainerShape from "./ContentContainerShape";
 
 export default function SeaLevel() {

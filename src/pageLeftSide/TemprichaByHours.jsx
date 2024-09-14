@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import PropTypes from "prop-types";
-import useHourlyWeather from "./customHooks/useHourlyWeather";
+import useHourlyWeather from "../customHooks/useHourlyWeather";
 
 export default function TemprichaByHours({ hourlyData }) {
   const swiperRef = useRef(null);

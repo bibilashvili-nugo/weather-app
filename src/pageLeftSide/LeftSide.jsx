@@ -6,7 +6,7 @@ import Sensitivity from "./Sensitivity";
 import TemprichaByHours from "./TemprichaByHours";
 import SeaLevel from "./SeaLevel";
 import { hourlyData } from "./hourlyData";
-import { useCurrentLocation } from "./customHooks/GetCurrentLocation";
+import { useCurrentLocation } from "../services/CurrentCity";
 
 export default function LeftSide() {
   const { t } = useTranslation();

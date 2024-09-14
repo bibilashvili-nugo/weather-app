@@ -5,7 +5,6 @@ export function useCurrentLocation() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  console.log(address, "addres");
   const fetchLocationDetails = useCallback(async () => {
     setLoading(true);
     setError(null);

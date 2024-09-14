@@ -1,5 +1,5 @@
 import ContentContainerShape from "./ContentContainerShape";
-import useWeather from "./customHooks/useWeather";
+import useWeather from "../customHooks/useWeather";
 
 export default function Visibility() {
   const { weather } = useWeather();
