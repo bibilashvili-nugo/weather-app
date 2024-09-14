@@ -18,7 +18,6 @@ function ContentContainerShape({ data }) {
     >
       {data && (
         <div className="flex flex-col gap-[1rem] items-center justify-between">
-          {/* Render the label if it exists */}
           {data.label && (
             <h2
               className="text-[#FFFFFF] text-center text-[18px] sm:text-[20px] lg:text-[24px]"
@@ -28,7 +27,6 @@ function ContentContainerShape({ data }) {
             </h2>
           )}
 
-          {/* Render humidity if it exists */}
           {data.humidity && (
             <div className="text-center">
               <h3
@@ -40,7 +38,6 @@ function ContentContainerShape({ data }) {
             </div>
           )}
 
-          {/* Render tempricha if it exists */}
           {data.tempricha && (
             <div className="text-center">
               <h3
@@ -52,7 +49,6 @@ function ContentContainerShape({ data }) {
             </div>
           )}
 
-          {/* Render percentage if it exists */}
           {data.percentage && (
             <div className="text-center">
               <h3

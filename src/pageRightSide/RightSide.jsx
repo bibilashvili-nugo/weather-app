@@ -1,20 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { AiOutlineCalendar } from 'react-icons/ai';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; 
+import React, { useState, useEffect, useRef } from "react";
+import { AiOutlineCalendar } from "react-icons/ai";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
-
-const API_KEY = 'qfqb4mH8tbAcAUEgSNeNvVk6g4z1Rj0G';
-const API_URL = `https://api.tomorrow.io/v4/weather/forecast?location=batumi&apikey=${API_KEY}&timesteps=daily&startTime=${new Date().toISOString().split('T')[0]}&endTime=${new Date(new Date().setDate(new Date().getDate() + 13)).toISOString().split('T')[0]}`;
+const API_KEY = "qfqb4mH8tbAcAUEgSNeNvVk6g4z1Rj0G";
+const API_URL = `https://api.tomorrow.io/v4/weather/forecast?location=batumi&apikey=${API_KEY}&timesteps=daily&startTime=${
+  new Date().toISOString().split("T")[0]
+}&endTime=${
+  new Date(new Date().setDate(new Date().getDate() + 13))
+    .toISOString()
+    .split("T")[0]
+}`;
 
 const formatDate = (dateString) => {
-  const options = { weekday: 'long', day: 'numeric', month: 'long' };
+  const options = { weekday: "long", day: "numeric", month: "long" };
   const date = new Date(dateString);
-  return new Intl.DateTimeFormat('ka-GE', options).format(date);
+  return new Intl.DateTimeFormat("ka-GE", options).format(date);
 };
-36
-
-
+36;
 
 const RightSide = () => {
   const [forecast, setForecast] = useState([]);
@@ -28,18 +31,20 @@ const RightSide = () => {
     const fetchForecastData = async () => {
       try {
         const response = await fetch(API_URL, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Accept': 'application/json',
+            Accept: "application/json",
           },
         });
 
         if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.statusText}`);
+          throw new Error(
+            `Network response was not ok: ${response.statusText}`
+          );
         }
 
         const data = await response.json();
-        console.log('Full API Response:', data);
+        console.log("Full API Response:", data);
 
         const dailyData = data?.timelines?.daily ?? [];
         setForecast(dailyData);
@@ -60,8 +65,8 @@ const RightSide = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSaveClick = () => {
@@ -70,21 +75,33 @@ const RightSide = () => {
   };
 
   if (loading) {
-    return <div className="text-center text-lg text-gray-600">Loading forecast data...</div>;
+    return (
+      <div className="text-center text-lg text-gray-600">
+        Loading forecast data...
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="text-center text-lg text-red-600">Error: {error}</div>;
+    return (
+      <div className="text-center text-lg text-red-600">Error: {error}</div>
+    );
   }
 
   if (forecast.length === 0) {
-    return <div className="text-center text-lg text-gray-600">No forecast data available.</div>;
+    return (
+      <div className="text-center text-lg text-gray-600">
+        No forecast data available.
+      </div>
+    );
   }
 
   return (
     <div className="p-4 relative">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-semibold text-[#000000]">Weather Forecast</h1>
+        <h1 className="text-2xl font-semibold text-[#000000]">
+          Weather Forecast
+        </h1>
         <AiOutlineCalendar
           className="w-6 h-6 text-gray-600 cursor-pointer"
           onClick={() => setCalendarVisible(!isCalendarVisible)}
@@ -115,26 +132,37 @@ const RightSide = () => {
           <div
             key={index}
             className="flex flex-col items-center justify-between p-4 bg-[#00000066] text-white rounded-lg"
-            style={{ width: '152px', height: '184px', borderRadius: '12px', opacity: '0.9' }}
+            style={{
+              width: "152px",
+              height: "184px",
+              borderRadius: "12px",
+              opacity: "0.9",
+            }}
           >
             <div className="mb-2 text-center">
-              <h2 className="text-xl font-medium">{formatDate(day.time).split(', ')[1]}</h2>
-              <p>{formatDate(day.time).split(', ')[0]}</p>
+              <h2 className="text-xl font-medium">
+                {formatDate(day.time).split(", ")[1]}
+              </h2>
+              <p>{formatDate(day.time).split(", ")[0]}</p>
             </div>
             <div className="mb-2">
               <img
-                src={`/weatherIcons/filled sun.svg`} 
+                src={`/weatherIcons/filled sun.svg`}
                 alt="Weather Icon"
                 className="w-12 h-12 mx-auto"
               />
             </div>
             <div className="flex justify-center gap-2">
               <p className="text-sm">
-                <span className="font-semibold">{Math.round(day.values?.temperatureMax) ?? 'N/A'}°C</span>
+                <span className="font-semibold">
+                  {Math.round(day.values?.temperatureMax) ?? "N/A"}°C
+                </span>
               </p>
               <span className="text-sm">|</span>
               <p className="text-sm">
-                <span className="font-semibold">{Math.round(day.values?.temperatureMin) ?? 'N/A'}°C</span>
+                <span className="font-semibold">
+                  {Math.round(day.values?.temperatureMin) ?? "N/A"}°C
+                </span>
               </p>
             </div>
           </div>

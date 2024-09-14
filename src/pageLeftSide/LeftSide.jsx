@@ -10,7 +10,7 @@ export default function LeftSide() {
   const { t } = useTranslation();
   const { address, fetchLocationDetails, error, loading } =
     useCurrentLocation();
-
+  console.log(address, "addres");
   return (
     <div className="max-w-[860px] pt-[12px] pb-[30px] px-4 lg:px-8">
       <h2 className="text-[22px] lg:text-[28px] text-[#FFFFFF] pt-[38px] pb-[27px] font-[510]">

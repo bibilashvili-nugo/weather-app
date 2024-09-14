@@ -32,7 +32,7 @@ export default function TemprichaByHours({ hourlyData }) {
 
         overflow: "hidden",
       }}
-      className="container w-[500px] md:w-[600px] xl:w-[755px] bg-[#00000066] mb-[53px] py-[28px] rounded-[14px]  p-4"
+      className="container w-[500px] md:w-[400px] xl:w-[755px] bg-[#00000066] mb-[53px] py-[28px] rounded-[14px]  p-4"
     >
       <Swiper
         ref={swiperRef}

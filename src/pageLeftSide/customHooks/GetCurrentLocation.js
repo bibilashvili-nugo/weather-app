@@ -5,6 +5,7 @@ export function useCurrentLocation() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  console.log(address, "addres");
   const fetchLocationDetails = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -24,7 +25,6 @@ export function useCurrentLocation() {
           console.log("API Response:", data);
 
           if (data && data.address) {
-            // Fallback to "Unknown" if city is unavailable
             const city = data.address.city || data.address.town || "Unknown";
             setAddress(city);
           } else {

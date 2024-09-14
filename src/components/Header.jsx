@@ -1,10 +1,12 @@
 import { MdSearch } from "react-icons/md";
 import LanguageSelector from "../language_selector/Language_selector";
 
+import SwitcherFtoT from "./SwitcherFtoT";
+
 const Header = () => {
   return (
     <header className="flex justify-between items-center p-7">
-      <div className=" pr-7 relative">
+      <div className=" pr-7 relative w-full">
         <div className="relative flex justify-between items-center">
           <MdSearch className="absolute left-4 text-black text-xl" />
           <input
@@ -12,7 +14,11 @@ const Header = () => {
             placeholder="მოძებნე ქალაქი"
             className="w-[393px] h-[60px] pl-12 pr-4 rounded-full bg-[#FF9500] text-white placeholder-black focus:outline-none focus:ring-0"
           />
-          <LanguageSelector />
+          <div className="flex gap-[10px]">
+            <LanguageSelector />
+            <SwitcherFtoT />
+            <img src="/language.svg" alt="" />
+          </div>
         </div>
       </div>
     </header>
