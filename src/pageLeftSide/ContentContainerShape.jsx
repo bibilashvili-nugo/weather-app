@@ -13,24 +13,26 @@ function ContentContainerShape({ data }) {
 
   return (
     <div
-      className="bg-[#00000066] rounded-[8px] text-[#af2525] w-full "
+      className="bg-[#00000066] rounded-[8px] text-[#af2525] w-full"
       style={containerStyle}
     >
       {data && (
         <div className="flex flex-col gap-[1rem] items-center justify-between">
+          {/* Label */}
           {data.label && (
             <h2
-              className="text-[#FFFFFF] text-center text-[18px] sm:text-[20px] lg:text-[24px]"
+              className="text-[#FFFFFF] text-center"
               style={getTextStyle(data.label)}
             >
               {data.label.label}
             </h2>
           )}
 
+          {/* Humidity */}
           {data.humidity && (
             <div className="text-center">
               <h3
-                className="text-[#FFFFFF] text-[16px] sm:text-[18px] lg:text-[22px]"
+                className="text-[#FFFFFF]"
                 style={getTextStyle(data.humidity)}
               >
                 {data.humidity.humidity}
@@ -38,21 +40,23 @@ function ContentContainerShape({ data }) {
             </div>
           )}
 
-          {data.tempricha && (
+          {/* Temperature (Sensitivity) */}
+          {data.temperature && (
             <div className="text-center">
               <h3
-                className="text-[#FFFFFF] text-[16px] sm:text-[18px] lg:text-[22px]"
-                style={getTextStyle(data.tempricha)}
+                className="text-[#FFFFFF]"
+                style={getTextStyle(data.temperature)}
               >
-                {data.tempricha.tempricha}
+                {data.temperature.value}
               </h3>
             </div>
           )}
 
+          {/* Percentage (if available) */}
           {data.percentage && (
             <div className="text-center">
               <h3
-                className="text-[#FFFFFF] text-[16px] sm:text-[18px] lg:text-[22px]"
+                className="text-[#FFFFFF]"
                 style={getTextStyle(data.percentage)}
               >
                 {data.percentage.percentage}
@@ -77,8 +81,8 @@ ContentContainerShape.propTypes = {
       text: PropTypes.string,
       font: PropTypes.string,
     }),
-    tempricha: PropTypes.shape({
-      tempricha: PropTypes.string,
+    temperature: PropTypes.shape({
+      value: PropTypes.string,
       text: PropTypes.string,
       font: PropTypes.string,
     }),

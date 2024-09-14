@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 
 const API_KEY = "c3eaa28172292c30f8ef43e381957755";
 
@@ -34,8 +33,6 @@ const getUserLocation = () => {
 };
 
 const useWeather = () => {
-  const [city, setCity] = useState("");
-
   const {
     data: weather,
     error,
@@ -44,11 +41,7 @@ const useWeather = () => {
     queryKey: ["weather"],
     queryFn: async () => {
       const coords = await getUserLocation();
-      setCity(
-        await fetchWeatherData(coords.latitude, coords.longitude).then(
-          (data) => data.name
-        )
-      );
+
       return fetchWeatherData(coords.latitude, coords.longitude);
     },
     enabled: true,
@@ -61,7 +54,6 @@ const useWeather = () => {
     error,
     isLoading,
     kelvinToCelsius,
-    city,
   };
 };
 
