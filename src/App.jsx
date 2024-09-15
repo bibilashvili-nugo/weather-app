@@ -35,7 +35,7 @@ const App = () => {
 
   return (
 
-    <QueryClientProvider client={queryClient}>
+    
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -43,7 +43,7 @@ const App = () => {
           </Route>
         </Routes>
       </Router>
-    </QueryClientProvider>
+    
 
   
   );
