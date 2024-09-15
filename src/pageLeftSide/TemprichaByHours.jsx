@@ -62,7 +62,6 @@ export default function TemprichaByHours({ weather }) {
         navigation
         pagination={{ clickable: true }}
         slideToClickedSlide
-        loop={true}
         className="swiper-container"
         style={{ overflow: "hidden" }}
       >
@@ -72,7 +71,7 @@ export default function TemprichaByHours({ weather }) {
             className="p-4 flex gap-[10px] flex-col items-center"
           >
             <p className="md:text-[18px] text-[16px] text-[#D7D7D7] font-[400]">
-              {formatTime(hour.dt)} {/* Display formatted time */}
+              {formatTime(hour.dt)}
             </p>
             <img
               className="w-[35px] h-[35px]"

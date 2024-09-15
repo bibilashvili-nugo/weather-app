@@ -2,28 +2,37 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./layout/layout";
 import Home from "./pages/Home";
 import { useEffect, useState } from "react";
-
 import "./i18n";
 import getFormattedWeatherData from "./services/WeatherService";
+import { useCurrentLocation } from "./customHooks/useCurrentLocation";
 
 
 const App = () => {
   const [weather, setWeather] = useState({});
+  const { fetchLocationDetails, address } = useCurrentLocation();
+  const [query, setQuery] = useState({ q: "tbilisi" });
 
   useEffect(() => {
-    const getWeather = async () => {
+    const fetchWeatherData = async () => {
       try {
-        const data = await getFormattedWeatherData({ q: "tbilisi" });
-        console.log(data, "axali");
+        const data = await getFormattedWeatherData(query);
         setWeather(data);
       } catch (error) {
         console.error("Error fetching weather data:", error);
       }
     };
 
-    getWeather();
-  }, []);
+    // if (address) {
+    fetchWeatherData();
+    // }
+  }, [address]);
+
+  useEffect(() => {
+    fetchLocationDetails();
+  }, [fetchLocationDetails]);
+
   console.log(weather, "weather from app");
+
   return (
 
     <QueryClientProvider client={queryClient}>
