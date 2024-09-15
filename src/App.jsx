@@ -6,11 +6,10 @@ import "./i18n";
 import getFormattedWeatherData from "./services/WeatherService";
 import { useCurrentLocation } from "./customHooks/useCurrentLocation";
 
-
 const App = () => {
   const [weather, setWeather] = useState({});
   const { fetchLocationDetails, address } = useCurrentLocation();
-  const [query, setQuery] = useState({ q: "tbilisi" });
+  const [query, setQuery] = useState();
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -34,18 +33,13 @@ const App = () => {
   console.log(weather, "weather from app");
 
   return (
-
-    
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </Router>
-    
-
-  
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 
